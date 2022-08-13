@@ -1,0 +1,14 @@
+@font-face {
+    font-family: hb;
+    src: url(hb.ttf);
+}
+.hb {
+    font-family: hb;
+    font-size: xx-large;
+}
+.message {
+    font-size: large;
+}
+.kioskboard-row-top {
+    display: none !important;
+}

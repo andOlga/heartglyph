@@ -1,0 +1,18 @@
+<title>Heartbound glyph converter</title>
+<link rel=stylesheet href=../style.css>
+<link rel=icon href=../icon.ico>
+<script src='kb.js'></script>
+<textarea id=text rows=30 cols=250></textarea>
+<div class='message'>
+    Use lowercase symbols for Darksider glyphs, and uppercase symbols for Guardian glyphs.<br>
+    Encoder is <a href='../encode/'>here</a>.<br>
+    Font file can be downloaded <a href='../hb.ttf'>here</a>.
+    </div>
+<script>
+    KioskBoard.init({
+        keysJsonUrl: 'en.json',
+        keysFontFamily: 'hb',
+        keysSpacebarText: 'space LASERS'
+    })
+    KioskBoard.run('#text')
+</script>
