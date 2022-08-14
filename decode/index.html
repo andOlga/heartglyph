@@ -5,6 +5,7 @@
 <textarea id=text rows=30 cols=250></textarea>
 <div class='message'>
     Use lowercase symbols for Darksider glyphs, and uppercase symbols for Guardian glyphs.<br>
+    Click <a href='#' id=copytext>here</a> to copy the decoded text to your clipboard.<br>
     Encoder is <a href='../encode/'>here</a>.<br>
     Font file can be downloaded <a href='../hb.ttf'>here</a>.
     </div>
@@ -15,4 +16,8 @@
         keysSpacebarText: '_'
     })
     KioskBoard.run('#text')
+    document.getElementById('copytext').addEventListener('click', event => {
+        event.preventDefault()
+        navigator.clipboard.writeText(document.getElementById('text').value)
+    })
 </script>

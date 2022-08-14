@@ -4,6 +4,54 @@
 <textarea id=text class=hb rows=20 cols=100></textarea>
 <div class='message'>
 Use lowercase symbols for Darksider glyphs, and uppercase symbols for Guardian glyphs.<br>
+Click <a href='#' id='copyImage'>here</a> to copy the encoded text as an image to your clipboard, with a <select id='theme'>
+    <option value='black'>black</option>
+    <option value='white'>white</option>
+    <option value='dark'>transparent (with white font)</option>
+    <option value='light'>transparent (with black font)</option>
+</select> background.<br>
 Decoder is <a href='../decode/'>here</a>.<br>
 Font file can be downloaded <a href='../hb.ttf'>here</a>.
 </div>
+<script>
+    document.getElementById('copyImage').addEventListener('click', event => {
+        event.preventDefault()
+        const canvas = document.createElement('canvas')
+        let ctx = canvas.getContext('2d')
+        ctx.font = '32px hb'
+        ctx.textBaseline = 'top'
+        const lines = document.getElementById('text').value.split('\n')
+        canvas.width = Math.max(...lines.map(x => ctx.measureText(x).width))
+        canvas.height = lines.length * 32
+        ctx = canvas.getContext('2d') // Reset context after width/height change
+        const theme = document.getElementById('theme').value
+        let backColor = foreColor = null
+        switch (theme) {
+            case 'black':
+                backColor = 'black'
+                foreColor = 'white'
+                break
+            case 'white':
+                backColor = 'white'
+                foreColor = 'black'
+                break
+            case 'dark':
+                foreColor = 'white'
+                break
+            case 'light':
+                foreColor = 'black'
+                break
+        }
+        if (backColor) {
+            ctx.fillStyle = backColor
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+        }
+        ctx.font = '32px hb'
+        ctx.textBaseline = 'top'
+        ctx.fillStyle = foreColor
+        for (let i = 0; i < lines.length; i++) {
+            ctx.fillText(lines[i], 0, i*32)
+        }
+        canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]))
+    })
+</script>
