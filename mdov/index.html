@@ -1,0 +1,32 @@
+<title>MDOV</title>
+<link rel=styleshseet href=../style.css>
+<link rel=icon href=../icon.ico>
+<textarea id=text rows=30 cols=250></textarea><br>
+<button id='mdov'>MDOV</button> <button id='meow'>MEOW</button>
+<script>
+    function mdov (meow, direction) {
+        let mdov = ''
+        for (let i = 0; i < meow.length; i++) {
+            if ((i + 1) % 2 === 0 && /[a-zA-Z]/.test(meow[i])) {
+                let newChar = meow.charCodeAt(i) + direction
+                if (newChar === 'Z'.charCodeAt() + 1) newChar = 'A'.charCodeAt()
+                if (newChar === 'A'.charCodeAt() - 1) newChar = 'Z'.charCodeAt()
+                if (newChar === 'z'.charCodeAt() + 1) newChar = 'a'.charCodeAt()
+                if (newChar === 'A'.charCodeAt() - 1) newChar = 'z'.charCodeAt()
+                mdov += String.fromCharCode(newChar)
+            } else {
+                mdov += meow[i]
+            }
+        }
+        return mdov
+    }
+
+    function click (event) {
+        const direction = event.target.id === 'mdov' ? -1 : 1
+        const existingText = document.getElementById('text').value
+        document.getElementById('text').value = existingText.split(/\s+/).map(x => mdov(x, direction)).join(' ')
+    }
+
+    document.getElementById('mdov').addEventListener('click', click)
+    document.getElementById('meow').addEventListener('click', click)
+</script>
