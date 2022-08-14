@@ -9,6 +9,7 @@ Click <a href='#' id='copyImage'>here</a> to copy the encoded text as an image t
     <option value='white'>white</option>
     <option value='dark'>transparent (with white font)</option>
     <option value='light'>transparent (with black font)</option>
+    <option value='custom'>custom</option>
 </select> background.<br>
 Decoder is <a href='../decode/'>here</a>.<br>
 Font file can be downloaded <a href='../hb.ttf'>here</a>.
@@ -40,6 +41,10 @@ Font file can be downloaded <a href='../hb.ttf'>here</a>.
                 break
             case 'light':
                 foreColor = 'black'
+                break
+            case 'custom':
+                foreColor = prompt('Text color?', 'red')
+                backColor = prompt('Background color?', 'transparent')
                 break
         }
         if (backColor) {
