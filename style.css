@@ -9,10 +9,13 @@
 .message {
     font-size: large;
 }
-.kioskboard-row-top {
+.kioskboard-row-top, .kioskboard-key-space {
     display: none !important;
 }
-.kioskboard-row:nth-of-type(3) .kioskboard-key[data-index="9"]::before {
+.kioskboard-row:nth-of-type(5) .kioskboard-key[data-index="5"]::before {
+    content: "_";
+}
+.kioskboard-row:nth-of-type(5) .kioskboard-key[data-index="6"]::before {
     content: "⏎";
 }
 #gizmo {
